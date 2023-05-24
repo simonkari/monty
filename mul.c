@@ -30,6 +30,7 @@ if (*stack && (*stack)->next)
 		free(global.line);
 		fclose(global.fil);
 		free_l(stack);
+		
 		exit(EXIT_FAILURE);
 	}
 }
