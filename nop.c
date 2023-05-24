@@ -7,6 +7,7 @@
  */
 void _nop(stack_t **stack, unsigned int num_line)
 {
+    // Do nothing
     (void)stack;
     (void)num_line;
 }
