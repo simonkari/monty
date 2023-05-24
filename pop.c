@@ -1,10 +1,13 @@
 #include "monty.h"
+
 /**
  * _pop - removes the top element of stack
  * @stack: head
  * @num_line: number line
  */
+
 #include "monty.h"
+
 /**
  * _pop - removes the top element of stack
  * @stack: head
