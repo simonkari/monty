@@ -9,21 +9,27 @@
 
 void _mul(stack_t **stack, unsigned int num_line)
 {
-	if (*stack == NULL || (*stack)->next == NULL)
+	stack_t *temp1;
+	stack_t *temp2;
+	int mult = 0;
+
+	if (*stack && (*stack)->next)
+	{
+		temp2 = (*stack)->next;
+		mult = temp2->n * (*stack)->n;
+		temp1 = *stack;
+		*stack = (*stack)->next;
+		if (*stack)
+			(*stack)->prev = NULL;
+		free(temp1);
+		(*stack)->n = mult;
+	}
+	else
 	{
 		dprintf(2, "L%u: can't mul, stack too short\n", num_line);
+		free(global.line);
+		fclose(global.fil);
+		free_l(stack);
 		exit(EXIT_FAILURE);
 	}
-
-	int multiplicand = (*stack)->next->n;
-	int multiplier = (*stack)->n;
-	int result = multiplicand * multiplier;
-
-	stack_t *temp = *stack;
-	*stack = (*stack)->next;
-	if (*stack)
-		(*stack)->prev = NULL;
-	free(temp);
-
-	(*stack)->n = result;
 }
