@@ -6,24 +6,40 @@
  * @num_line: Line number of the command.
  */
 
+#include "monty.h"
+/**
+ * _mod - computes the rest of the division of the second
+ * top element of the stack by the top element of the stack.
+ * @stack:  Pointer to the head of the stack.
+ * @num_line: Line number of the command.
+ */
+
 void _mod(stack_t **stack, unsigned int num_line)
 {
-    if (*stack == NULL || (*stack)->next == NULL)
-    {
-        dprintf(2, "L%d: can't mod, stack too short\n", num_line);
-        free(global.line);
-        fclose(global.fil);
-        free_l(stack);
-        exit(EXIT_FAILURE);
-    }
+	stack_t *temp1, *temp2;
+	int remainder = 0;
 
-    int divisor = (*stack)->n;
-    int dividend = (*stack)->next->n;
-    int remainder = dividend % divisor;
+	if (*stack == NULL || (*stack)->next == NULL)
+	{
+		dprintf(2, "L%d: can't mod, stack too short\n", num_line);
 
-    (*stack)->next->n = remainder;
+		exit(EXIT_FAILURE);
+	}
 
-    stack_t *temp = *stack;
-    *stack = (*stack)->next;
-    free(temp);
+	if ((*stack)->n == 0)
+	{
+		dprintf(2, "L%u: division by zero\n", num_line);
+		
+		exit(EXIT_FAILURE);
+	
+	}
+
+	temp2 = (*stack)->next;
+	remainder = temp2->n % (*stack)->n;
+	temp1 = *stack;
+	*stack = (*stack)->next;
+	if (*stack != NULL)
+		(*stack)->prev = NULL;
+	free(temp1);
+	(*stack)->n = remainder;
 }
