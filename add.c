@@ -6,30 +6,23 @@
  * @num_line: Line number of the command.
  */
 
+#include "monty.h"
+
 void _add(stack_t **stack, unsigned int num_line)
 {
-	stack_t *temp1;
-	stack_t *temp2;
-	int sum = 0;
-
-	if (*stack && (*stack)->next)
-	{
-		temp2 = (*stack)->next;
-		sum = (*stack)->n + temp2->n;
-		temp1 = *stack;
-		*stack = (*stack)->next;
-		if (*stack)
-			(*stack)->prev = NULL;
-		free(temp1);
-		(*stack)->n = sum;
-	}
-	else
-	{
-		dprintf(2, "L%d: can't add, stack too short\n", num_line);
-		free(global.line);
-		fclose(global.fil);
-		free_l(stack);
-
-		exit(EXIT_FAILURE);
-	}
+    if (*stack == NULL || (*stack)->next == NULL)
+    {
+        _error(stack, num_line);
+    }
+    else
+    {
+        stack_t *temp1 = *stack;
+        stack_t *temp2 = temp1->next;
+        int sum = temp1->n + temp2->n;
+        
+        temp2->n = sum;
+        *stack = temp2;
+        free(temp1);
+    }
 }
+
