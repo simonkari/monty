@@ -1,4 +1,5 @@
 #include "monty.h"
+
 /**
  * _pstr - prints the string starting at the top of the stack
  * @stack: head
