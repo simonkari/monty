@@ -7,12 +7,13 @@
  */
 void _error(stack_t **stack, unsigned int n)
 {
-dprintf(2, "L%u: unknown instruction %s\n", n, global.line);
-free(global.line);
-fclose(global.fil);
-free_l(stack);
-if (stack)
-{
-}
-exit(EXIT_FAILURE);
+    fprintf(stderr, "L%u: unknown instruction %s\n", n, global.line);
+    free(global.line);
+    fclose(global.fil);
+    free_l(stack);
+    if (stack != NULL)
+    {
+        *stack = NULL;
+    }
+    exit(EXIT_FAILURE);
 }
