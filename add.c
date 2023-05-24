@@ -8,22 +8,7 @@
 
 void _add(stack_t **stack, unsigned int num_line)
 {
-	stack_t *temp1;
-	stack_t *temp2;
-	int sum = 0;
-
-	if (*stack && (*stack)->next)
-	{
-		temp2 = (*stack)->next;
-		sum = (*stack)->n + temp2->n;
-		temp1 = *stack;
-		*stack = (*stack)->next;
-		if (*stack)
-			(*stack)->prev = NULL;
-		free(temp1);
-		(*stack)->n = sum;
-	}
-	else
+	if (*stack == NULL || (*stack)->next == NULL)
 	{
 		dprintf(2, "L%d: can't add, stack too short\n", num_line);
 		free(global.line);
@@ -31,4 +16,15 @@ void _add(stack_t **stack, unsigned int num_line)
 		free_l(stack);
 		exit(EXIT_FAILURE);
 	}
+
+	stack_t *temp1 = *stack;
+	stack_t *temp2 = (*stack)->next;
+	int sum = temp1->n + temp2->n;
+
+	*stack = (*stack)->next;
+	(*stack)->prev = NULL;
+
+	free(temp1);
+	(*stack)->n = sum;
 }
+
