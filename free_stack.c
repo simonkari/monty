@@ -6,12 +6,15 @@
 
 void free_l(stack_t **stack)
 {
-stack_t *delete = *stack;
+    stack_t *current = *stack;
+    stack_t *next;
 
-while (*stack)
-{
-delete = delete->next;
-free(*stack);
-*stack = delete;
-}
+    while (current != NULL)
+    {
+        next = current->next;
+        free(current);
+        current = next;
+    }
+
+    *stack = NULL;
 }
