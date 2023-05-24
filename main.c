@@ -6,43 +6,29 @@ globals_t global;
  * @argv: An array of strings containing the command-line arguments.
  * Return: Always 0
  */
-int main(int argc, char **argv)
+void _add(stack_t **stack, unsigned int num_line)
 {
-stack_t *stack = NULL;
-size_t numbytes = 0;
-int bytesr = 0;
-unsigned int con = 1;
+	stack_t *temp1;
+	stack_t *temp2;
+	int sum = 0;
 
-global.flag = 1;
-global.line = NULL;
-if (argc != 2)
-{
-fputs("USAGE: monty file\n", stderr);
-exit(EXIT_FAILURE);
-}
-global.fil = fopen(argv[1], "r");
-if (global.fil == NULL)
-{
-dprintf(2, "Error: Can't open file %s\n", argv[1]);
-exit(EXIT_FAILURE);
-}
-while ((bytesr = getline(&global.line, &numbytes, global.fil)) != EOF)
-{
-delete_jump(global.line);
-if (global.line[0] != 35)
-{
-global.token = strtok(global.line, " \t\n");
-global.opco = global.token;
-if (global.opco != NULL)
-{
-global.token = strtok(NULL, " \t\n");
-func(global.opco)(&stack, con);
-}
-con++;
-}
-}
-free_l(&stack);
-free(global.line);
-fclose(global.fil);
-return (0);
+	if (*stack && (*stack)->next)
+	{
+		temp2 = (*stack)->next;
+		sum = (*stack)->n + temp2->n;
+		temp1 = *stack;
+		*stack = (*stack)->next;
+		if (*stack)
+			(*stack)->prev = NULL;
+		free(temp1);
+		(*stack)->n = sum;
+	}
+	else
+	{
+		dprintf(2, "L%d: can't add, stack too short\n", num_line);
+		free(global.line);
+		fclose(global.fil);
+		free_l(stack);
+		exit(EXIT_FAILURE);
+	}
 }
