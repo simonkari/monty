@@ -5,13 +5,16 @@
  * @line: line to read
  * Return: The size of the line.
  */
+#include "monty.h"
+
 int _size_line(char *line)
 {
-unsigned int con = 0;
+    int size = 0;
+    char *ptr = line;
 
-while (line[con])
-{
-con++;
+    while (*ptr++)
+        size++;
+
+    return size;
 }
-return (con);
-}
+
