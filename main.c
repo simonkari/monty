@@ -6,7 +6,6 @@ globals_t global;
  * @argv: An array of strings containing the command-line arguments.
  * Return: An integer representing the exit status of the program.
  */
-
 #include "monty.h"
 globals_t global;
 
@@ -16,7 +15,6 @@ globals_t global;
  * @argv: argument
  * Return: Always 0
  */
-
 int main(int argc, char **argv)
 {
 	stack_t *stack = NULL;
@@ -55,5 +53,6 @@ int main(int argc, char **argv)
 	free_l(&stack);
 	free(global.line);
 	fclose(global.fil);
+
 	return (0);
 }
