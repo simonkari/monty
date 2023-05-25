@@ -1,10 +1,10 @@
 #include "monty.h"
-/**
- * _push - pushes an element to the stack
- * @stack: head
- * @num_line: number line
- */
 
+/**
+ * _push - function pushes an element to the stack.
+ * @stack: Represents the head of the stack.
+ * @num_line: integer value indicating the line number.
+ */
 void _push(stack_t **stack, unsigned int num_line)
 {
 stack_t *temp;
@@ -31,10 +31,10 @@ temp->next = *stack;
 else
 {
 while ((*stack)->next)
-*stack = (*stack)->next;
+	*stack = (*stack)->next;
 (*stack)->next = temp, temp->prev = *stack;
 while ((*stack)->prev)
-*stack = (*stack)->prev;
+	*stack = (*stack)->prev;
 }
 }
 else
@@ -45,6 +45,7 @@ else
 free(global.line), fclose(global.fil);
 dprintf(2, "L%u: usage: push integer\n", num_line);
 free_l(stack);
+
 exit(EXIT_FAILURE);
 }
 }
