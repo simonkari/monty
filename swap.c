@@ -1,8 +1,8 @@
 #include "monty.h"
 /**
  * _swap - swaps the top two elements of the stack
- * @stack: head
- * @num_line: number line
+ * @stack: Represents the head of the stack.
+ * @num_line: An integer value indicating the line number.
  */
 
 void _swap(stack_t **stack, unsigned int num_line)
@@ -28,6 +28,7 @@ dprintf(2, "L%u: can't swap, stack too short\n", num_line);
 free(global.line);
 fclose(global.fil);
 free_l(stack);
+
 exit(EXIT_FAILURE);
 }
 }
