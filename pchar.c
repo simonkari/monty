@@ -1,8 +1,8 @@
 #include "monty.h"
 /**
  * _pchar - prints the char at the top of the stack, followed by a new line
- * @stack: head
- * @num_line: integer
+ * @stack: Represents the head of the stack.
+ * @num_line: An integer value indicating the line number.
  */
 void _pchar(stack_t **stack, unsigned int num_line)
 {
