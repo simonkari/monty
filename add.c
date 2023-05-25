@@ -6,7 +6,6 @@
  * @num_line: Line number of the command.
  */
 
-
 void _add(stack_t **stack, unsigned int num_line)
 {
     if (*stack == NULL || (*stack)->next == NULL)
@@ -24,4 +23,3 @@ void _add(stack_t **stack, unsigned int num_line)
         free(temp1);
     }
 }
-
