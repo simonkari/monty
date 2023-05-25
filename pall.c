@@ -6,15 +6,14 @@
  * @stack: Represents the head of the stack.
  * @num_line: An integer value indicating the line number.
  */
-void _pall(stack_t *stack, unsigned int num_line)
+void _pall(stack_t **stack, unsigned int num_line)
 {
-    stack_t *temp;
-
-    temp = stack;
-    while (temp)
-    {
-        printf("%d ", temp->n);
-        temp = temp->next;
-    }
-    printf("\n");
+stack_t *temp;
+temp = *stack;
+if (num_line)
+while (temp)
+{
+printf("%d\n", temp->n);
+temp = temp->next;
+}
 }
