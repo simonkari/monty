@@ -6,7 +6,6 @@
  * @num_line: Line number of the command.
  */
 
-#include "monty.h"
 
 void _add(stack_t **stack, unsigned int num_line)
 {
